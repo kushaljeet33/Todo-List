@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #6c5ce7;      /* Vibrant purple */
+            --primary: #6c5ce7;     
             --primary-light: #a29bfe;
-            --secondary: #fd79a8;     /* Pink accent */
-            --dark: #0f0f12;          /* Deep black */
+            --secondary: #fd79a8;    
+            --dark: #0f0f12;         
             --darker: #09090b;
             --light: #f8f9fa;
-            --success: #d40eba;       /* Teal */
-            --danger: #47ff78;        /* Red */
-            --warning: #fdcb6e;       /* Yellow */
+            --success: #d40eba;      
+            --danger: #47ff78;       
+            --warning: #fdcb6e;      
             --gray: #6c757d;
             --gray-dark: #2d3436;
             --border-radius: 10px;
@@ -365,7 +365,7 @@
         </div>
     </div>
 
-    <!-- Firebase SDK v9 (Modular) -->
+    
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
         import { 
@@ -392,8 +392,6 @@
   appId: "1:562563795841:web:29258b638885647f767680",
   measurementId: "G-389LB50MKW"
 };
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
        const db = getFirestore(app);
@@ -409,18 +407,18 @@ const analytics = getAnalytics(app);
             const completedCount = document.getElementById('completedCount');
             const loadingSpinner = document.getElementById('loadingSpinner');
             
-            // Show loading spinner
+          
             loadingSpinner.style.display = 'block';
             
-            // Reference to the tasks collection
+            
             const tasksCol = collection(db, 'tasks');
             
-            // Query for tasks ordered by creation date
+         
             const q = query(tasksCol, orderBy('createdAt', 'desc'));
             
-            // Set up real-time listener
+          
             const unsubscribe = onSnapshot(q, (snapshot) => {
-                // Clear lists but keep empty state structure
+               
                 todoList.innerHTML = '<div class="empty-state"><i class="fas fa-tasks"></i><p>No tasks yet. Add one above!</p></div>';
                 completedList.innerHTML = '<div class="empty-state"><i class="fas fa-check-circle"></i><p>Completed tasks will appear here</p></div>';
                 
@@ -472,7 +470,7 @@ const analytics = getAnalytics(app);
                     </div>
                 `;
                 
-                // Add event listeners to buttons
+               
                 const completeBtn = taskElement.querySelector('.complete-btn');
                 const deleteBtn = taskElement.querySelector('.delete-btn');
                 
@@ -498,7 +496,7 @@ const analytics = getAnalytics(app);
                             createdAt: serverTimestamp()
                         });
                         
-                        // Clear inputs
+                       
                         titleInput.value = '';
                         descriptionInput.value = '';
                         titleInput.focus();
@@ -537,8 +535,7 @@ const analytics = getAnalytics(app);
                     }
                 }
             }
-            
-            // Helper function to prevent XSS
+     
             function escapeHtml(unsafe) {
                 return unsafe
                     .replace(/&/g, "&amp;")
@@ -548,7 +545,7 @@ const analytics = getAnalytics(app);
                     .replace(/'/g, "&#039;");
             }
             
-            // Event listeners
+        
             addBtn.addEventListener('click', addTaskToFirestore);
             titleInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') addTaskToFirestore();
